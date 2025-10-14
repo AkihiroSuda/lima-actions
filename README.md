@@ -18,8 +18,6 @@ steps:
 
   - run: limactl start --plain --name=default --cpus=1 --memory=1 template://fedora
 
-  - uses: lima-vm/lima-actions/ssh@v1
-
   - run: rsync -a -e ssh . lima-default:/tmp/repo
 
   - run: ssh lima-default ls -l /tmp/repo
@@ -29,6 +27,4 @@ steps:
 ### `lima-vm/lima-actions/setup`
 - `version` (string): Lima version. e.g., "latest", "v1.0.6". Defaults to "latest".
 - `additional_guestagents` (boolean): Install lima-additional-guestagents. Usually not needed. Defaults to `false`.
-
-### `lima-vm/lima-actions/ssh`
-None
+- `ssh` (boolean): Setup `~/.ssh/config`. Defaults to `true`. Previously, this was a separate action `lima-vm/lima-actions/setup-ssh@v1`.
